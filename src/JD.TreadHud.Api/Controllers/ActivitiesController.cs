@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNet.Mvc;
-using JD.TreadHud.Domain.Models;
 
 namespace JD.TreadHud.Api.Controllers
 {
