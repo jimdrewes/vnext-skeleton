@@ -1,15 +1,30 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Extensions.Logging;
+using JD.TreadHud.Domain.Managers;
 
 namespace JD.TreadHud.Api.Controllers
 {
     [Route("api/[controller]")]
     public class ActivitiesController : Controller
     {
+        private readonly ILogger<ActivitiesController> _logger;
+        private readonly IActivityManager _activityManager;
+
+        public ActivitiesController(ILogger<ActivitiesController> logger, IActivityManager activityManager)
+        {
+            _logger = logger;
+            _activityManager = activityManager;
+        }
+
         // GET: api/activity
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            var activity = _activityManager.GetActivity(Guid.NewGuid());
+            var activities = _activityManager.GetAllActivities();
+            var success = _activityManager.AddActivity(activity);
             return new string[] { "value1", "value2" };
         }
 

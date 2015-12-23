@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using JD.TreadHud.Domain;
+using Serilog;
+using JD.TreadHud.Domain.Managers;
 
 namespace JD.TreadHud.Api
 {
@@ -20,6 +17,13 @@ namespace JD.TreadHud.Api
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            
+            Log.Logger = new LoggerConfiguration()
+              .MinimumLevel.Verbose()
+              .WriteTo.Trace()
+              .WriteTo.Console()
+              .WriteTo.File("JD.TreadHud.Api.log")
+              .CreateLogger();
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -29,6 +33,7 @@ namespace JD.TreadHud.Api
         {
             // Add framework services.
             services.AddMvc();
+            services.AddTransient<IActivityManager, ActivityManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,11 +41,10 @@ namespace JD.TreadHud.Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddSerilog();
 
             app.UseIISPlatformHandler();
-
             app.UseStaticFiles();
-
             app.UseMvc();
         }
 
