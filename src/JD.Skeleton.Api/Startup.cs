@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using JD.TreadHud.Domain.Managers;
+using JD.Skeleton.Domain.Managers;
 
-namespace JD.TreadHud.Api
+namespace JD.Skeleton.Api
 {
     public class Startup
     {
@@ -22,7 +22,7 @@ namespace JD.TreadHud.Api
               .MinimumLevel.Verbose()
               .WriteTo.Trace()
               .WriteTo.Console()
-              .WriteTo.File("JD.TreadHud.Api.log")
+              .WriteTo.File("JD.Skeleton.Api.log")
               .CreateLogger();
         }
 
@@ -33,7 +33,7 @@ namespace JD.TreadHud.Api
         {
             // Add framework services.
             services.AddMvc();
-            services.AddTransient<IActivityManager, ActivityManager>();
+            services.AddTransient<ISkeletonManager, SkeletonManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

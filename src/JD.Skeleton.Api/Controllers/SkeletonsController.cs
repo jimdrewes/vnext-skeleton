@@ -2,52 +2,52 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
-using JD.TreadHud.Domain.Managers;
+using JD.Skeleton.Domain.Managers;
 
-namespace JD.TreadHud.Api.Controllers
+namespace JD.Skeleton.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class ActivitiesController : Controller
+    public class SkeletonsController : Controller
     {
-        private readonly ILogger<ActivitiesController> _logger;
-        private readonly IActivityManager _activityManager;
+        private readonly ILogger<SkeletonsController> _logger;
+        private readonly ISkeletonManager _skeletonManager;
 
-        public ActivitiesController(ILogger<ActivitiesController> logger, IActivityManager activityManager)
+        public SkeletonsController(ILogger<SkeletonsController> logger, ISkeletonManager skeletonManager)
         {
             _logger = logger;
-            _activityManager = activityManager;
+            _skeletonManager = skeletonManager;
         }
 
-        // GET: api/activity
+        // GET: api/skeleton
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            var activity = _activityManager.GetActivity(Guid.NewGuid());
-            var activities = _activityManager.GetAllActivities();
-            var success = _activityManager.AddActivity(activity);
+            var bone = _skeletonManager.GetBone(Guid.NewGuid());
+            var bones = _skeletonManager.GetAllBones();
+            var success = _skeletonManager.AddBone(bone);
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/activity/5
+        // GET api/skeleton/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/activity
+        // POST api/skeleton
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/activity/5
+        // PUT api/skeleton/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/activity/5
+        // DELETE api/skeleton/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

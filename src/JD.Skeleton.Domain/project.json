@@ -1,12 +1,12 @@
 {
   "version": "1.0.0-*",
-  "description": "TreadHud's domain library",
+  "description": "Skeleton domain library",
   "authors": [ "Jim Drewes" ],
   "tags": [""],
   "projectUrl": "",
   "licenseUrl": "",
   "tooling": {
-    "defaultNamespace": "JD.TreadHud.Domain"
+    "defaultNamespace": "JD.Skeleton.Domain"
   },
 
   "frameworks": {

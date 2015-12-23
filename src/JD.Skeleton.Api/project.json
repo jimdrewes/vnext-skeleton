@@ -4,7 +4,7 @@
     "emitEntryPoint": true
   },
   "tooling": {
-    "defaultNamespace": "JD.TreadHud.Api"
+    "defaultNamespace": "JD.Skeleton.Api"
   },
 
   "dependencies": {
@@ -17,7 +17,7 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug" : "1.0.0-rc1-final",
     "Serilog.Framework.Logging": "1.0.0-rc1-final-10071",
-    "JD.TreadHud.Domain" : ""
+    "JD.Skeleton.Domain" : ""
   },
 
   "commands": {
